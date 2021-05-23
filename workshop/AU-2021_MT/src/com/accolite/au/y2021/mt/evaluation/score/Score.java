@@ -5,24 +5,25 @@ import java.util.List;
 
 public enum Score {
 	
-	Mohit(50, "PENDING_FINAL"),
-	Vikram(65, "PENDING_FINAL"),
-	Adishi(40, "PENDING_FINAL"),
-	Paras(60, "PENDING_FINAL"),
-	priyanshu(45, "PENDING_FINAL");
+	Mohit(new Double[] {50D}, "PENDING_FINAL"),
+	Vikram(new Double[] {65D}, "PENDING_FINAL"),
+	Adishi(new Double[] {40D}, "PENDING_FINAL"),
+	Paras(new Double[] {80D, 60D}, "PENDING_FINAL"),
+	priyanshu(new Double[] {45D}, "PENDING_FINAL"),
+	Rakti(new Double[] {60D}, "PENDING_FINAL");
 	
-	private Score(double score, String status) {
-		this.score = score;
+	private Score(Double[] scores, String status) {
+		this.scores = scores;
 		this.status = status;
 	}
 	
-	final Double score;
+	final Double[] scores;
 	final String status;
 	
 	public static void main(String[] args) {
 		System.out.println("***** Report *****");
 		List<Score> sl = Arrays.asList(Score.values());
-		sl.sort((a, b) -> b.score.compareTo(a.score));
-		sl.forEach(a -> System.err.println(1 + sl.indexOf(a) + ".\t" + a.name() + "\t\t====> " + a.score + " -- " + a.status));
+		sl.sort((a, b) -> b.scores[0].compareTo(a.scores[0]));
+		sl.forEach(a -> System.err.println(1 + sl.indexOf(a) + ".\t" + a.name() + "\t\t====> " + a.scores[0] + " -- " + a.status));
 	}
 }

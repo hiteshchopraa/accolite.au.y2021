@@ -1,12 +1,16 @@
-package assignment;
+package com.accolite.au.y2021.mt.evaluation.Rakti;
+
 import java.util.*;
+
+// Review Sree: Each class should be in it's own file.
+// Review Sree: Total distance covered by each horses should be printed in report.
 
 class HorseRace extends Thread {
 	Horse horse;
 	Result r;
 	static int distance = 1000;
 	static int n;
-	
+
 	HorseRace(Horse h, Result r) {
 		this.horse = h;
 		this.r = r;
@@ -14,56 +18,51 @@ class HorseRace extends Thread {
 	}
 
 	public void run() {
-		do 
-		{
-			synchronized (this)
-			{
+		do {
+			synchronized (this) {
 				Thread race = Thread.currentThread();
 				if (horse.distanceCovered >= distance) {
 					r.list.add(horse);
 					r.count++;
 					break;
 				}
+				
+				// Review Sree: You are creating multiple instances of the below thread, but there should be only one instance.
 				SpeedClass ss = new SpeedClass(horse);
 				ss.start();
-				try 
-				{
+				try {
 					ss.join();
-				} 
-				catch (Exception e) 
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
-				} 
+				}
 				Check s = new Check(horse, race.getName());
 				s.start();
 
 			}
-		} 
-		
+		}
+
 		while (true);
-		if (r.count == n)
-		{
+		if (r.count == n) {
 			System.out.println("Horse Race is Finished ");
 			System.out.println("============================================================");
-			for (int i = 1; i <= r.list.size(); i++) 
-			{
+			for (int i = 1; i <= r.list.size(); i++) {
 				Horse horse = r.list.get(i - 1);
-				if (i == 1)
-				{
-			System.out.println(horse.name +" scored position " + i );
-			System.out.println("Top speed : " + horse.topSpeed + "m/s" );
-			System.out.println( "Lowest speed : "+ horse.lowSpeed + "m/s");
-			System.out.println("Average Speed : " + horse.averageSpeed + "m/s" );
-			System.out.println("All the speed of horse are : "+ horse.speedHistory.substring(0, horse.speedHistory.length() - 2));
-				}
-				else {
-				
-					System.out.println(horse.name +" scored position " + i );
-					System.out.println("Top speed : " + horse.topSpeed + "m/s" );
-					System.out.println( "Lowest speed : "+ horse.lowSpeed + "m/s");
-					System.out.println("Average Speed : " + horse.averageSpeed + "m/s" );
-					System.out.println("All the speed of horse are : "+ horse.speedHistory.substring(0, horse.speedHistory.length() - 2));
-						
+				if (i == 1) {
+					System.out.println(horse.name + " scored position " + i);
+					System.out.println("Top speed : " + horse.topSpeed + "m/s");
+					System.out.println("Lowest speed : " + horse.lowSpeed + "m/s");
+					System.out.println("Average Speed : " + horse.averageSpeed + "m/s");
+					System.out.println("All the speed of horse are : "
+							+ horse.speedHistory.substring(0, horse.speedHistory.length() - 2));
+				} else {
+
+					System.out.println(horse.name + " scored position " + i);
+					System.out.println("Top speed : " + horse.topSpeed + "m/s");
+					System.out.println("Lowest speed : " + horse.lowSpeed + "m/s");
+					System.out.println("Average Speed : " + horse.averageSpeed + "m/s");
+					System.out.println("All the speed of horse are : "
+							+ horse.speedHistory.substring(0, horse.speedHistory.length() - 2));
+
 				}
 				System.out.println("=============================================================================");
 			}
@@ -72,12 +71,11 @@ class HorseRace extends Thread {
 
 	public static void main(String[] args) {
 		Result r = new Result();
-		Scanner sc=new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter how many horses for race: ");
-		 n=sc.nextInt();
-		
-		for (int i = 0; i < n; i++)
-		{ 
+		n = sc.nextInt();
+
+		for (int i = 0; i < n; i++) {
 			HorseRace h = new HorseRace(new Horse("Horse " + i), r);
 			h.start();
 
@@ -85,9 +83,6 @@ class HorseRace extends Thread {
 
 	}
 }
-
-
-
 
 class SpeedClass extends Thread {
 	Horse horse;
@@ -101,10 +96,6 @@ class SpeedClass extends Thread {
 	}
 }
 
-
-
-
-
 class Check extends Thread {
 	Horse horse;
 	String Tname;
@@ -116,7 +107,7 @@ class Check extends Thread {
 	}
 
 	public void run() {
-		
+
 		synchronized (this) {
 			horse.speeds += horse.speed;
 			horse.totallSpeedChanges += 1;
@@ -126,17 +117,12 @@ class Check extends Thread {
 
 			if (horse.topSpeed < horse.speed)
 				horse.topSpeed = horse.speed;
-			
+
 			if (horse.lowSpeed > horse.speed)
 				horse.lowSpeed = horse.speed;
 		}
 	}
 }
-
-
-
-
-
 
 class Result {
 	ArrayList<Horse> list;
@@ -147,13 +133,8 @@ class Result {
 	}
 }
 
-
-
-
-
-
 class Horse {
-	int speed = 0,speeds=0,distanceCovered=0,totallSpeedChanges=0;
+	int speed = 0, speeds = 0, distanceCovered = 0, totallSpeedChanges = 0;
 	float averageSpeed;
 	int topSpeed = Integer.MIN_VALUE;
 	int lowSpeed = Integer.MAX_VALUE;
