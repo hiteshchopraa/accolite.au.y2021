@@ -6,9 +6,6 @@ public class Horse {
 
     String horseName;
 
-	String horseName; 
-
-
 	public Horse(String horseName) {
 		this.horseName = horseName;
 
@@ -24,15 +21,5 @@ public class Horse {
     int lowSpeed = Integer.MAX_VALUE; 
     String speedHistory = ""; 
     int distanceRemaining; 
-
-	int totalDistance = 1000; 
-	int speed = ThreadLocalRandom.current().nextInt(40, 60 + 1); 
-	float timeTaken = 0; 
-	int distanceCovered = 0;
-	float averageSpeed = 0;
-	int topSpeed = Integer.MIN_VALUE; 
-	int lowSpeed = Integer.MAX_VALUE;
-	String speedHistory = ""; 
-	int distanceRemaining; 
 
 }

@@ -5,9 +5,6 @@ public class Statistics implements Runnable {
     String horseName; 
     Horse reference; 
 
-	String horseName; 
-	Horse reference; 
-
 
 	Statistics(Horse reference, String horseName) {
 		this.reference = reference;
@@ -19,17 +16,7 @@ public class Statistics implements Runnable {
 
 	public void run() {
 		synchronized (this) {
-
-
-            
-            reference.distanceRemaining = reference.totalDistance - reference.distanceCovered;
-            if (reference.distanceRemaining < reference.speed) {
-             
-                reference.timeTaken += (float) reference.distanceRemaining / reference.speed;
-                reference.distanceCovered = reference.totalDistance;
-            }
-
-	
+			
 			reference.distanceRemaining = reference.totalDistance - reference.distanceCovered;
 			if (reference.distanceRemaining < reference.speed) {
 			
@@ -38,7 +25,7 @@ public class Statistics implements Runnable {
 			}
 
 
-			else {
+		else {
 
 
                 reference.speedHistory += reference.speed + "m/s || ";
@@ -57,28 +44,9 @@ public class Statistics implements Runnable {
                 if (reference.lowSpeed > reference.speed) {
                     reference.lowSpeed = reference.speed;
                 }
-            }
+            
+	    }
 
-				reference.speedHistory += reference.speed + "m/s || ";
-
-				reference.distanceCovered += reference.speed; 
-																
-
-				reference.timeTaken += 1; 
-
-				reference.averageSpeed = (float) reference.distanceCovered / reference.timeTaken; 
-
-	
-				if (reference.topSpeed < reference.speed) {
-					reference.topSpeed = reference.speed;
-				}
-			
-				if (reference.lowSpeed > reference.speed) {
-					reference.lowSpeed = reference.speed;
-				}
-			}
-
-
-		}
 	}
+   }
 }

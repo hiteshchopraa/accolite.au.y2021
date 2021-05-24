@@ -16,7 +16,7 @@ class RandomSpeed implements Runnable {
         reference.speed = (int) (Math.random() * range) + minSpeed; 
 
 
-        reference.speed = (int) (Math.random() * range) + minSpeed; 
+  
 
     }
 }
