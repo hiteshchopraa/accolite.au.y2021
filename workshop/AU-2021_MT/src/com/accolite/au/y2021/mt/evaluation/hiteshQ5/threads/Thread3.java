@@ -14,11 +14,13 @@ public class Thread3 implements Runnable {
 
     @Override
     public void run() {
-        while (counter.getC1() <= counter.getMaxCount()) {
+        while (counter.getC1() < counter.getMaxCount() || !counter.isTerminateExecution()) {
             if (counter.getC2() % 4 == 0 && counter.getC2() != 0 && !counter.isThirdConsumed()) {
                 counter.increment3();
                 counter.setThirdConsumed(true);
-                System.out.println("Counter 3-> " + counter.getC3());
+                System.out.println(
+                    Thread.currentThread().getName() + " Incremented Counter3 By 1 and Counter Becomes-> " + counter
+                        .getC3());
                 counter.notifyOthers();
             }
         }

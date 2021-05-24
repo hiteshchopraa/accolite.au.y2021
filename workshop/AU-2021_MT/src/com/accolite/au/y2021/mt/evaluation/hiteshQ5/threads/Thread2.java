@@ -3,7 +3,7 @@ package com.accolite.au.y2021.mt.evaluation.hiteshQ5.threads;
 import com.accolite.au.y2021.mt.evaluation.hiteshQ5.model.Counter;
 
 /**
- * Thread 2 Class Used to Increment the counter by 2 whenever the Counter Incremented by Thread1 is an multiple of 25.
+ * Thread 2 Class Used to Increment the counter by 2 whenever the Counter Incremented by Thread1 is an factor of 25.
  **/
 public class Thread2 implements Runnable {
 
@@ -15,7 +15,7 @@ public class Thread2 implements Runnable {
 
     @Override
     public void run() {
-        while (counter.getC1() <= counter.getMaxCount()) {
+        while (counter.getC1() < counter.getMaxCount() || !counter.isTerminateExecution()) {
             if (counter.getC1() % 25 == 0 && counter.getC1() != 0 && !counter.isSecondConsumed()) {
                 counter.increment2();
                 if (!counter.isThirdConsumed()) {
@@ -25,7 +25,9 @@ public class Thread2 implements Runnable {
                     counter.setThirdConsumed(false);
                 }
                 counter.setSecondConsumed(true);
-                System.out.println("Counter 2-> " + counter.getC2());
+                System.out.println(
+                    Thread.currentThread().getName() + " Incremented Counter2 By 2 and Counter Becomes-> " + counter
+                        .getC2());
                 counter.notifyOthers();
                 counter.takeWait();
             }

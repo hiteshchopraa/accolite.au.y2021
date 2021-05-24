@@ -34,6 +34,11 @@ public class Counter {
      **/
     int maxCount = Integer.MIN_VALUE;
 
+    /**
+     * Boolean Value to Call Other Thread To Terminate Work.
+     **/
+    boolean terminateExecution = false;
+
     public Counter(int maxCount) {
         this.maxCount = maxCount;
         c1 = 0;
@@ -72,6 +77,15 @@ public class Counter {
 
     public int getMaxCount() {
         return maxCount;
+    }
+
+
+    public boolean isTerminateExecution() {
+        return terminateExecution;
+    }
+
+    public void setTerminateExecution(boolean terminateExecution) {
+        this.terminateExecution = terminateExecution;
     }
 
     /**

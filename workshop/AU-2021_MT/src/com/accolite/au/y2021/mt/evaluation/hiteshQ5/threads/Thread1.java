@@ -16,7 +16,9 @@ public class Thread1 implements Runnable {
     @Override public void run() {
         while (counter.getC1() < counter.getMaxCount()) {
             counter.increment1();
-            System.out.println("Counter 1-> " + counter.getC1());
+            System.out.println(
+                Thread.currentThread().getName() + " Incremented Counter1 By 1 and Counter Becomes-> " + counter
+                    .getC1());
             if (!counter.isSecondConsumed() || !counter.isThirdConsumed()) {
                 counter.takeWait();
             }
@@ -27,7 +29,7 @@ public class Thread1 implements Runnable {
             }
         }
         while (!counter.isSecondConsumed() && !counter.isThirdConsumed()) ;
-        counter.increment1();
         counter.notifyOthers();
+        counter.setTerminateExecution(true);
     }
 }
