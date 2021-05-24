@@ -12,6 +12,8 @@ class Outcome {
     }
 }
 
+//Review : Sree -- Program should take track length as an input rather than hard coding it to 100
+//Review : Sree -- No threads should be running with same speed in consecutive laps.
 
 public class Main {
     public static void main(String args[]) {

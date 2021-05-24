@@ -28,13 +28,14 @@ class Race implements Runnable {
                 }
               
                 if (reference.timeTaken % 5 == 0) {
-                    
+                	// Review : Sree -- There should be only one thread instances of this type and should be started along with the horses. This thread should process only one thread at a time.
                     RandomSpeed rs = new RandomSpeed(reference);
                     Thread th = new Thread(rs);
                     th.start();
 
                 }
                 
+                // Review : Sree -- There should be only one thread instances of this type and should be started along with the horses.
                 Statistics sta = new Statistics(reference, Thread.currentThread().getName());
                 Thread thd = new Thread(sta);
                 thd.start();
@@ -44,7 +45,6 @@ class Race implements Runnable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         } while (true);
 

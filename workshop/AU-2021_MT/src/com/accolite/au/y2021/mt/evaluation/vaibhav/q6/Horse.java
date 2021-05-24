@@ -11,8 +11,9 @@ public class Horse {
 
 	}
 
-
+	// Review : Sree -- You should accumulate the distances covered in each lap & print that as distance covered - not the input value.
     int totalDistance = 1000; 
+    // Review : Sree -- Speed should be assigned by only the speed setter thread.
     int speed = ThreadLocalRandom.current().nextInt(40, 60 + 1); 
     float timeTaken = 0; 
     int distanceCovered = 0; 
