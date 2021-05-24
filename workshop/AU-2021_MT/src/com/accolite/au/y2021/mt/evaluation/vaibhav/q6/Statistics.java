@@ -1,8 +1,13 @@
 package com.accolite.au.y2021.mt.evaluation.vaibhav.q6;
 
 public class Statistics implements Runnable {
-	String horseName; // Horse name passed
-	Horse reference; // reference of the Horse
+
+    String horseName; 
+    Horse reference; 
+
+	String horseName; 
+	Horse reference; 
+
 
 	Statistics(Horse reference, String horseName) {
 		this.reference = reference;
@@ -15,37 +20,64 @@ public class Statistics implements Runnable {
 	public void run() {
 		synchronized (this) {
 
-			// Calculating the remainig distance
+
+            
+            reference.distanceRemaining = reference.totalDistance - reference.distanceCovered;
+            if (reference.distanceRemaining < reference.speed) {
+             
+                reference.timeTaken += (float) reference.distanceRemaining / reference.speed;
+                reference.distanceCovered = reference.totalDistance;
+            }
+
+	
 			reference.distanceRemaining = reference.totalDistance - reference.distanceCovered;
 			if (reference.distanceRemaining < reference.speed) {
-				// Adding the time required for it
+			
 				reference.timeTaken += (float) reference.distanceRemaining / reference.speed;
 				reference.distanceCovered = reference.totalDistance;
 			}
 
+
 			else {
 
-				reference.speedHistory += reference.speed + "m/s || ";// Adding the speed of each instance of the horse
 
-				reference.distanceCovered += reference.speed; // Distance covered distance in meters and speed is in
-																// m/s so distance covered is equal to speed per second.
+                reference.speedHistory += reference.speed + "m/s || ";
 
-				reference.timeTaken += 1; // Calculating the time, horse taking to finish the race
+                reference.distanceCovered += reference.speed; 
 
-				reference.averageSpeed = (float) reference.distanceCovered / reference.timeTaken; // Calculating the
-																									// average speed at
-																									// each instance of
-																									// time
+                reference.timeTaken += 1; 
 
-				// Calculating the maximum speed
+                reference.averageSpeed = (float) reference.distanceCovered / reference.timeTaken; 
+
+               
+                if (reference.topSpeed < reference.speed) {
+                    reference.topSpeed = reference.speed;
+                }
+               
+                if (reference.lowSpeed > reference.speed) {
+                    reference.lowSpeed = reference.speed;
+                }
+            }
+
+				reference.speedHistory += reference.speed + "m/s || ";
+
+				reference.distanceCovered += reference.speed; 
+																
+
+				reference.timeTaken += 1; 
+
+				reference.averageSpeed = (float) reference.distanceCovered / reference.timeTaken; 
+
+	
 				if (reference.topSpeed < reference.speed) {
 					reference.topSpeed = reference.speed;
 				}
-				// Calculating the minimum speed
+			
 				if (reference.lowSpeed > reference.speed) {
 					reference.lowSpeed = reference.speed;
 				}
 			}
+
 
 		}
 	}
