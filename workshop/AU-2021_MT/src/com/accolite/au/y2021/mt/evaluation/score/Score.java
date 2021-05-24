@@ -10,7 +10,9 @@ public enum Score {
 	Adishi(new Double[] {40D}, "PENDING_FINAL"),
 	Paras(new Double[] {80D, 60D}, "PENDING_FINAL"),
 	priyanshu(new Double[] {45D}, "PENDING_FINAL"),
-	Rakti(new Double[] {60D}, "PENDING_FINAL");
+	Rakti(new Double[] {60D}, "PENDING_FINAL"),
+	Vaibhav(new Double[] {0D}, "REJECTED_CnP"),
+	Himanshu(new Double[] {45D}, "PENDING_FINAL");
 	
 	private Score(Double[] scores, String status) {
 		this.scores = scores;

@@ -12,8 +12,6 @@ class RandomSpeed implements Runnable {
     int range = maxSpeed - minSpeed + 1;
 
     public void run() {
-
         reference.speed = (int) (Math.random() * range) + minSpeed; // random method to generate random values of speed
-
     }
 }
