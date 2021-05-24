@@ -1,5 +1,4 @@
 package com.accolite.au.y2021.mt.evaluation.paras.q6;
-
 class Statics extends Thread{
 	 Horse horse;
 	 String Tname;
@@ -27,3 +26,4 @@ class Statics extends Thread{
 	   }
 	 }
 }
+

@@ -1,5 +1,6 @@
 package com.accolite.au.y2021.mt.evaluation.paras.q6;
 
+
 class Horse{
 	int speed=0;
 	int speeds=0;
@@ -17,3 +18,4 @@ class Horse{
 	  
 	}	
 }
+

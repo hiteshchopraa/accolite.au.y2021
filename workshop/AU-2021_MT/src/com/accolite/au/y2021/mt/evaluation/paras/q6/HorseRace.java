@@ -1,4 +1,5 @@
 package com.accolite.au.y2021.mt.evaluation.paras.q6;
+
 import java.util.*;
 
 class HorseRace extends Thread {
@@ -70,8 +71,24 @@ class HorseRace extends Thread {
 		       
 		        }
 		  scn.close();
-		  
 		}
+	}
+
+	public static void main(String[] args) {
+		java.util.Scanner scn = new Scanner(System.in);
+		System.out.println("input Number Of Horses:");
+		num = scn.nextInt();
+		System.out.println("input Speed Change Gap: ex 10,20,30");
+		int gap = scn.nextInt();
+		System.out.println("input Distance To Be Covered in meters ex 1000,3000 etc:");
+		distance = scn.nextInt();
+
+		Result rs = new Result();// result class object to pass it in thread
+		for (int i = 0; i < num; i++) { // i have taken no of horses as 5 we can also take them through user input
+			HorseRace h1 = new HorseRace(new Horse("horse" + i), rs, gap);// thread objects
+			h1.start();// starting thread
+
+		}
+		scn.close();
+	}
 }
-
-
